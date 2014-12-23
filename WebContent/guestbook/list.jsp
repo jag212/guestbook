@@ -4,9 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>방명록 글보기</title>
 </head>
 <body>
-
+	<table>
+		<tr>
+			<td>
+				안녕 이건 테스트
+			</td>
+		</tr>
+	</table>
 </body>
 </html>
