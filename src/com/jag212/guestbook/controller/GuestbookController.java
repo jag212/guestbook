@@ -1,5 +1,8 @@
 package com.jag212.guestbook.controller;
 
-public class GuestbookController {
+import org.springframework.stereotype.Controller;
 
+@Controller
+public class GuestbookController {
+	
 }
