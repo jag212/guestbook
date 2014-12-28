@@ -1,5 +1,7 @@
 package com.jag212.guestbook.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -31,6 +33,11 @@ public class GuestbookServiceImpl implements GuestbookService{
 	public int delete(GuestbookDto guestbookDto) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<GuestbookDto> getList() {
+		return guestbookDao.getList();
 	}
 	
 }
