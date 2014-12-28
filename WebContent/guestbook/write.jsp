@@ -45,6 +45,7 @@ function mailCheck(mail) {
 </head>
 <body>
 <center>
+<h3>방명록 쓰기</h3>
 <form action="" method="post" name="gbwriteForm">
 <table>
 	<tr>

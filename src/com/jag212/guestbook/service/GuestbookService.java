@@ -10,7 +10,9 @@ public interface GuestbookService {
 	
 	public int modify(GuestbookDto guestbookDto);
 
-	public int delete(GuestbookDto guestbookDto);
+	public int delete(int seq);
 	
 	public List<GuestbookDto> getList();
+	
+	public GuestbookDto mvmodify(int seq, String password);
 }

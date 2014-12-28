@@ -1,6 +1,8 @@
 package com.jag212.guestbook.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,14 +32,21 @@ public class GuestbookServiceImpl implements GuestbookService{
 	}
 
 	@Override
-	public int delete(GuestbookDto guestbookDto) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int delete(int seq) {
+		return guestbookDao.delete(seq);
 	}
 
 	@Override
 	public List<GuestbookDto> getList() {
 		return guestbookDao.getList();
+	}
+
+	@Override
+	public GuestbookDto mvmodify(int seq, String password) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("seq", seq+"");
+		map.put("password", password);
+		return guestbookDao.mvmodify(map);
 	}
 	
 }
