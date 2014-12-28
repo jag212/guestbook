@@ -15,7 +15,6 @@ public class GuestbookDaoImpl implements GuestbookDao{
 	@Override
 	public int write(GuestbookDto guestbookDto) {
 		int cnt = sqlSession.insert("com.jag212.guestbook.dao.GuestbookDao.write", guestbookDto);
-		sqlSession.commit();
 		return cnt;
 	}
 
