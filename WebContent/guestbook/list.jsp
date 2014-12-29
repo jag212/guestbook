@@ -28,7 +28,7 @@ function mvmodify(seq){
 <input type="hidden" name="seq">
 <center>
 <h3>방명록 리스트</h3>
-	<table border="1px" bordercolor="#ffffff" cellpadding="1px" width="500px">
+	<table width="500px">
 		<tr>
 			<td colspan="4" align="right">
 				<input type="button" name="write" value="글쓰기" onclick="javascript:mvwrite();">
@@ -41,7 +41,7 @@ function mvmodify(seq){
 			</c:if>
 			<c:if test="${gbList.size()!=0}">
 			<!-- List의 for문 돌릴 테이블 -->
-				<table bordercolor="#ffffff" border="1px" cellpadding="1px" width="500px;">
+				<table width="500px;">
 					<c:forEach var="gbDto" items="${gbList}">
 					<tr>
 						<td>E-Mail : </td>
@@ -58,6 +58,9 @@ function mvmodify(seq){
 						<td align="center"><input type="password" name="password" size="10" maxlength="16"></td>
 						<td align="center" width="80px"><input type="button" value="수정하기"
 							onclick="javascript:mvmodify(${gbDto.seq});"></td>
+					</tr>
+					<tr>
+						<td colspan="4" height="1px" bgcolor="#888888"></td>
 					</tr>
 					</c:forEach>
 				</table>
