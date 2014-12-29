@@ -8,25 +8,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>방명록 글 수정하기</title>
 <script type="text/javascript">
-function GBwrite(){
-	if(document.gbwriteForm.password.value == ""){
+function GBmodify(){
+	if(document.gbmodifyForm.password.value == ""){
 		alert("비밀번호를 입력하세요");
 		return;
-	}else if(document.gbwriteForm.content.value == ""){
+	}else if(document.gbmodifyForm.content.value == ""){
 		alert("본문을 입력하세요");
 		return;
-	}else if(document.gbwriteForm.content.value.length > 1000){
+	}else if(document.gbmodifyForm.content.value.length > 1000){
 		alert("본문은 1000바이트까지만 작성 가능합니다");
 		return;
 	}else{
-		document.gbwriteForm.action = "${root}/modify.html";
-		document.gbwriteForm.submit();
+		document.gbmodifyForm.action = "${root}/modify.html";
+		document.gbmodifyForm.submit();
 	}
 }
 function GBdelete(){
 	if(confirm("정말 삭제하시겠습니까?")){
-		document.gbwriteForm.action = "${root}/delete.html";
-		document.gbwriteForm.submit();
+		document.gbmodifyForm.action = "${root}/delete.html";
+		document.gbmodifyForm.submit();
 	} else{
 		return;
 	}
@@ -36,7 +36,7 @@ function GBdelete(){
 <body>
 <center>
 <h3>방명록 글 수정하기</h3>
-<form name="modifyForm" method="post">
+<form name="gbmodifyForm" method="post">
 <input type="hidden" name="seq" value="${gbDto.seq}">
 <table>
 	<tr>

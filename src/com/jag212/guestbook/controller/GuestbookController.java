@@ -34,8 +34,10 @@ public class GuestbookController {
 	public ModelAndView list(){
 		ModelAndView mav = new ModelAndView();
 		List<GuestbookDto> gbList = guestbookService.getList();
-		mav.addObject("gbList", gbList);
-		mav.setViewName("/guestbook/list");
+		if(gbList!=null){
+			mav.addObject("gbList", gbList);
+			mav.setViewName("/guestbook/list");
+		} else mav.setViewName("redirect:/error/listErr.jsp");
 		return mav;
 	}
 	
