@@ -12,6 +12,8 @@ function mvwrite(){
 	document.location.href="${root}/mvwrite.html";
 }
 function mvmodify(seq){
+	var password = document.getElementById("pass"+seq).value;
+	document.gblistForm.password.value = password;
 	if(document.gblistForm.password.value==""){
 		alert("비밀번호를 입력하세요");
 		return;
@@ -26,6 +28,7 @@ function mvmodify(seq){
 <body>
 <form name="gblistForm" method="post">
 <input type="hidden" name="seq">
+<input type="hidden" name="password">
 <center>
 <h3>방명록 리스트</h3>
 	<table width="500px">
@@ -55,7 +58,7 @@ function mvmodify(seq){
 					<tr>
 						<td>마지막 수정날짜 : </td>
 						<td>${gbDto.modilog}</td>
-						<td align="center"><input type="password" name="password" size="10" maxlength="16"></td>
+						<td align="center"><input type="password" id="pass${gbDto.seq}" size="10" maxlength="16"></td>
 						<td align="center" width="80px"><input type="button" value="수정하기"
 							onclick="javascript:mvmodify(${gbDto.seq});"></td>
 					</tr>
@@ -64,7 +67,7 @@ function mvmodify(seq){
 					</tr>
 					</c:forEach>
 				</table>
-				</c:if>
+			</c:if>
 			</td>
 		</tr>
 		<tr>
