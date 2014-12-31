@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:set var="root" value="${pageContext.request.contextPath}"/>
+<%
+pageContext.setAttribute("endl", "\n");
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -44,6 +48,7 @@ function mvmodify(seq){
 			</c:if>
 			<c:if test="${gbList.size()!=0}">
 			<!-- List의 for문 돌릴 테이블 -->
+			<div style="border: 1px solid #000000;">
 				<table width="500px;">
 					<c:forEach var="gbDto" items="${gbList}">
 					<tr>
@@ -53,7 +58,7 @@ function mvmodify(seq){
 						<td>${gbDto.logtime}</td>
 					</tr>
 					<tr>
-						<td colspan="4">${gbDto.content}</td>
+						<td colspan="4">${fn:replace(gbDto.content , endl, "<br>")}</td>
 					</tr>
 					<tr>
 						<td>마지막 수정날짜 : </td>
@@ -63,10 +68,11 @@ function mvmodify(seq){
 							onclick="javascript:mvmodify(${gbDto.seq});"></td>
 					</tr>
 					<tr>
-						<td colspan="4" height="1px" bgcolor="#888888"></td>
+						<td colspan="4" height="0.5px" bgcolor="#888888"></td>
 					</tr>
 					</c:forEach>
 				</table>
+			</div>
 			</c:if>
 			</td>
 		</tr>

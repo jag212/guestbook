@@ -11,14 +11,14 @@
     <select id="getList" resultType="guestbookDto">
     	SELECT	G.seq, G.email, G.content,
 			decode(to_char(G.logtime, 'yyyymmdd'),
-                       to_char(sysdate, 'yyyymmdd'), TO_CHAR(G.logtime, 'hh:mi:ss'),
+                       to_char(sysdate, 'yyyymmdd'), TO_CHAR(G.logtime, 'hh24:mi:ss'),
                        TO_CHAR(G.logtime, 'yy.mm.dd')) logtime,
             IF(M.seq,
             	decode(to_char(M.moditime, 'yyyymmdd'), to_char(sysdate, 'yyyymmdd'),
-            				TO_CHAR(M.moditime, 'hh:mi:ss'),
+            				TO_CHAR(M.moditime, 'hh24:mi:ss'),
     	                    TO_CHAR(M.moditime, 'yy.mm.dd')),
     	         decode(TO_CHAR(G.logtime, 'yyyymmdd'), to_char(sysdate, 'yyyymmdd'),
-    	         			 TO_CHAR(G.logtime, 'hh:mi:ss'),
+    	         			 TO_CHAR(G.logtime, 'hh24:mi:ss'),
        	                     TO_CHAR(G.logtime, 'yy.mm.dd'))) modilog
 		FROM guestbook G, modifytime M
 		WHERE G.seq=M.seq(+)
