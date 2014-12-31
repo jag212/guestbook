@@ -9,6 +9,7 @@
 	<configs>
 		<config>src/com/jag212/guestbook/config/spring/applicationContext-guestbook.xml</config>
 		<config>src/com/jag212/guestbook/config/spring/servlet-guestbook.xml</config>
+		<config>src/com/jag212/guestbook/test/GuestbookTest-context.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

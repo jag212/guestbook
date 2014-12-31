@@ -1,16 +1,21 @@
-package test;
+package com.jag212.guestbook.test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.jag212.guestbook.model.GuestbookDto;
 import com.jag212.guestbook.service.GuestbookService;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration
 public class GuestbookTest {
 
-	int seq = 2;
+	int seq = 2;	//요건 글 번호 존재하는 걸로 선택해서 바꿔가면서 테스트하자
 	
 	@Autowired
 	private GuestbookService guestbookService;
