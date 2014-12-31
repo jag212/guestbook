@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-config.dtd"> 
+
+<configuration>
+    <settings>
+        <setting name="cacheEnabled" value="false" />
+		<setting name="useGeneratedKeys" value="true" />
+		<setting name="defaultExecutorType" value="REUSE" />
+    </settings>
+    
+    <typeAliases>
+    	<typeAlias alias="map" type="java.util.Map"/>
+    	<typeAlias alias="guestbookDto" type="com.jag212.guestbook.model.GuestbookDto"/>
+    </typeAliases>
+    
+    <mappers>
+        <mapper resource="com/jag212/guestbook/config/mybatis/sqlmap-guestbook.xml"></mapper>
+    </mappers>
+    
+</configuration>

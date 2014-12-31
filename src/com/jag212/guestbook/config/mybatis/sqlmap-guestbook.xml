@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.jag212.guestbook.dao.GuestbookDao">
+
+	<insert id="write" parameterType="guestbookDto">
+		insert into guestbook(seq, email, password, content, logtime)
+		values(guest_seq.nextval, #{email}, #{password}, #{content}, sysdatetime)
+	</insert>
+    
+    <select id="getList" resultType="guestbookDto">
+    	SELECT	G.seq, G.email, G.content,
+			decode(to_char(G.logtime, 'yyyymmdd'),
+                       to_char(sysdate, 'yyyymmdd'), TO_CHAR(G.logtime, 'hh:mi:ss'),
+                       TO_CHAR(G.logtime, 'yy.mm.dd')) logtime,
+            IF(M.seq,
+            	decode(to_char(M.moditime, 'yyyymmdd'), to_char(sysdate, 'yyyymmdd'),
+            				TO_CHAR(M.moditime, 'hh:mi:ss'),
+    	                    TO_CHAR(M.moditime, 'yy.mm.dd')),
+    	         decode(TO_CHAR(G.logtime, 'yyyymmdd'), to_char(sysdate, 'yyyymmdd'),
+    	         			 TO_CHAR(G.logtime, 'hh:mi:ss'),
+       	                     TO_CHAR(G.logtime, 'yy.mm.dd'))) modilog
+		FROM guestbook G, modifytime M
+		WHERE G.seq=M.seq(+)
+		ORDER BY G.logtime DESC;
+    </select>
+    
+    <select id="passchk" parameterType="map" resultType="guestbookDto">
+    	select seq, email, content, password
+    	from guestbook
+    	where seq=#{seq} and password=#{password}
+    </select>
+    
+    <delete id="delete" parameterType="int">
+    	delete from guestbook
+    	where seq=#{seq}
+    </delete>
+    
+    <update id="modify" parameterType="guestbookDto">
+    	update guestbook
+    	set content=#{content}, password=#{password}
+    	where seq=#{seq}
+    </update>
+    
+    <update id="modifytime" parameterType="int">
+    	MERGE INTO modifytime
+		USING guestbook
+		ON(guestbook.seq=modifytime.seq)
+		WHEN matched THEN
+		UPDATE SET modifytime.moditime=sysdatetime
+		WHERE modifytime.seq=#{seq}
+		WHEN NOT matched THEN
+		INSERT VALUES (guestbook.seq, SYSDATETIME);
+    </update>
+    
+</mapper> 
